@@ -1,0 +1,55 @@
+{% extends "mainBase.html" %}
+{% block description %}<meta name="description" content="{{ passage.title }}">{% endblock %}
+{% block title %}{{ passage.title }}{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/static/css/passage.css">{% endblock %}
+{% block center %}
+    <div id="center">
+    <div id="main">
+        <div class="content">
+            <article class="post">
+                <h2 class="title"><a>{{ passage.title }}</a></h2>
+                <hr>
+                <div class="what">{% for pf in passage.content %}<p class='my-p'>{{pf|safe}}</p>{% endfor %}</div>
+                </br>
+                <div class="info">
+                    <span class="tag"><img src="/static/image/common/tag.png"><a href="{{ passage.tag_url }}">{{ passage.tag }}</a></span>
+                    <span class="date"><img src="/static/image/common/time.png"><time>{{ passage.time }}</time></span></div>
+            </article>
+        </div>
+        <div id="comments">
+        <div id="speak">
+            <span id="form-error"></span>
+        <div class="speak-head"><img src="/static/image/common/user.jpg"></div>
+        <div class="speak-form">
+            <form id="comment-form" method="post" action="{{ passage.addComment }}">
+                {% csrf_token %}
+                <div class="up">{{ form.nickname }}<button id="submit-button" type="submit" >发布</button></div>
+                <div class="down">{{ form.content }}</div>
+            </form>
+        </div>
+            <div style="clear: both"></div>
+        </div>
+        <ul>
+        {% if comments %}
+            {% for comment in comments %}
+                <li >
+                    <div class="comment-head"><img src={{ comment.head}}></div>
+                    <div class="comment-body">
+                    <span class="comment-name">{{ comment.name }}</span>
+                        {% for ph in comment.content%}
+                    <p class="comment-content">{{ ph }}</p>
+                            {% endfor %}
+                    <div class="comment-info"><time>{{ comment.time | date:"Y-m-d H:i:s"}}</time></div>
+                    </div>
+                    <div style="clear: both"></div>
+                    </li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/static/js/passage.js"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+ <div id="main">
+    {% if passages %}
+        {% for passage in passages  %}
+            <div class="content">
+            <article class="post">
+                <h2 class="title"><a href={{ passage.url }}>{{ passage.title}}</a></h2>
+                <div class="what">{% for ph in passage.summary %}<p>{{ ph|safe}}</p>{% endfor %}</div>
+                <div class="info">
+                    <span class="tag"><img src="/static/image/common/tag.png"><a href="{{ passage.tag_url }}">{{ passage.tag }}</a></span>
+                    <span class="date"><img src="/static/image/common/time.png"><time>{{ passage.time }}</time></span>
+                </div>
+            </article>
+            </div>
+        {% endfor %}
+        <div id="pager">
+            {% if pre %}<a class="pre" href={{ pre }}>前一页</a>{% endif %}
+            {% if next %}<a class="next" href={{ next }}>后一页</a>{% endif %}
+        </div>
+    {% else %}
+        <div class="content">
+        <article class="post">
+            <p id="nothing">什么也没有找到</p>
+        </article>
+        </div>
+    {% endif %}
+ </div>

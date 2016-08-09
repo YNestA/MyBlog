@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    {% block keywords %}<meta name="keywords" content="YNestA,个人博客,blog,Web">{% endblock %}
+    {% block description %}<meta name="description" content="YNestA的个人博客">{% endblock %}
+    <title>{% block title %}MainBase{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    {% block header %}
+        <header>
+        <nav>
+        <ul>
+            <a id="logo" href="/home/"><img src="/static/image/common/logo.png"></a>
+            <li><a href="/home/aboutme/">关于我</a></li>
+            <li><a href="/home/books/">书籍</a></li>
+            <li><a href="/home/note/page1">笔记</a></li>
+            <li><a href="/home/thought/page1/">杂谈</a></li>
+        </ul>
+            </nav>
+        <div class="search">
+            <input id="search-input" type="text" name={% block searchType %}"search-passage"{% endblock %}>
+            <a id="search-button" href="javascript:;"><img src="/static/image/common/search.png"></a>
+            <span id="search-shade"></span>
+        </div>
+        </header>
+    {% endblock %}
+    {% block center %}
+    {% endblock %}
+    {% block footer %}
+        <footer>
+        <p>powered by Yang xy<a class="github" target="_blank" href="https://github.com/YNestA"><img src="/static/image/common/my-github.png"></a></p>
+        <a id="go-top" href="javascript:void (0);"></a>
+        </footer>
+    {% endblock %}
+    <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/dealCSRF.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <!--[if lte IE 9]>
+	<script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="/static/selectivizr-master/selectivizr.js"></script>
+    <![endif]-->
+    {% block js %}{% endblock %}
+</body>
+</html>

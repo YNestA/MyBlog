@@ -1,0 +1,146 @@
+body{
+    background: #FFFFFF  repeat-y fixed ;
+    background-size: 100%,100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Microsoft Yahei","Hiragino Sans GB",Helvetica,"Helvetica Neue","微软雅黑",Tahoma,Arial,sans-serif;
+}
+/*html5*/
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{
+    display:block
+}
+a:focus{
+    outline: none;
+}
+header{
+    font-family: "Microsoft Yahei",sans-serif;
+    background-color:rgba(20,20,20,0.8);
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    color: white;
+    overflow: hidden;
+    z-index: 100;
+    padding: 2px 0;
+}
+#logo{
+    float: left;
+    margin-top: 3px;
+}
+#logo img{
+    border:0 none;
+}
+header nav>ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    width: 80%;
+    float: left;
+}
+header nav>ul li{
+    float: right;
+    width: auto;
+    margin-right: 2em;
+    height: 100%;
+}
+header nav>ul li a,header nav>ul li a.current {
+    display: block;
+    text-align: center;
+    font-size: 1.6em;
+    text-decoration: none;
+    transition:color 0.3s linear;
+    z-index: 5;
+    outline: none;
+    color: white;
+}
+header nav>ul li a.current{
+    color: #E09F80;
+}
+header nav>ul li a:hover{
+    color:#E09F80;
+}
+header div.search{
+    width: 15%;
+    float: left;
+    position: relative;
+    height: 3em;
+}
+header div.search input{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top:0;
+    bottom: 0;
+    border:solid gray 1px;
+    height: 1.5em;
+    width: 100%;
+    border-radius: 1em;
+    font-family:  "Microsoft Yahei";
+    transition: border 0.5s linear,width 0.5s linear;
+    text-indent: 1em;
+    font-weight: normal;
+
+}
+header div.search input:focus{
+    border: solid cornflowerblue 1px;
+}
+header div.search a,#search-shade{
+    position: absolute; 
+    width: 1.5em;
+    height:1.5em;
+    top:0.75em;
+    right:0;
+}
+#search-shade{
+    display: none;
+}
+header div.search a img{
+    position: absolute;
+    margin: auto;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border: 0 none;
+    width: 1.175em;
+    height: 1.175em;
+}
+footer {
+    background-color: rgba(255, 255, 255, 0);
+    margin: 60px 0px 0px;
+    padding: 10px 50px 0px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 1em;
+    color: darkcyan;
+    line-height: 25px;
+}
+footer a.github{
+    position: relative;
+}
+footer a.github img{
+    position: absolute;
+    left: 5px;
+    width: 24px;
+    height: 24px;
+    border: 0 none;
+}
+
+#go-top{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 35px;
+    height: 35px;
+    display: block;
+    border-top-left-radius: 35px;
+    background:lightyellow no-repeat url(/static/image/common/arrow_up.png) 75% 75%;
+    opacity: 0.7;
+    transition: all 0.2s ;
+}
+#go-top:hover{
+    width: 50px;
+    height: 50px;
+    border-top-left-radius: 50px;
+    opacity: 1;
+}

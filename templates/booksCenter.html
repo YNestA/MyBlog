@@ -1,0 +1,19 @@
+<div id="main">
+        <div id="movies">
+           <ul id="books">
+               {% for book in books %}
+               <li>
+                   <div class="book">
+                   <a class="book-name" target="_blank" href="{{ book.douban_url }}"><img src={{ book.img }}>{{ book.name }}</a>
+                    </div>
+                   <div class={{ book.comment_class }}>
+                   {% for ph in book.comment %}
+                       <p>{{ ph }}</p>
+                   {% endfor %}
+                   </div>
+               </li>
+               {% endfor %}
+           </ul>
+        </div>
+        <div style="clear: both"></div>
+    </div>

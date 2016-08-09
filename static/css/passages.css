@@ -1,0 +1,123 @@
+
+body{
+    background: #FFFFFF  url(/static/image/common/background.png) repeat-y fixed ;
+    background-size: 100%,100%;
+}
+
+#center{
+    width: 100%;
+}
+#main{
+    width: 80%;
+    margin: 30px auto;
+}
+.content{
+    padding: 2em 2.5em 1em 2.5em;
+    background-color: rgba(255,255,255,0.95);
+    margin-bottom:2.5em ;
+    border-radius: 0.5em;
+    box-shadow: 0 0 3px 3px rgba(0,0,0,0.15);
+
+}
+article.post{
+    margin: 0px 0px 2.5em;
+    word-wrap: break-word;
+}
+
+h2.title{
+    font-size: 2em;
+    margin: 0px 0px 20px;
+    font-weight: 500;
+}
+h2.title a{
+    color:darkcyan;
+    text-decoration: none;
+    transition: color 0.2s linear;
+    font-family: inherit;
+}
+h2.title a:hover{
+    color: lightseagreen;
+}
+.what{
+    font-size: 1em;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+    margin: 0px 0px 20px;
+}
+.what p,.what xmp{
+    white-space: pre-wrap;
+    margin-bottom: 1em;
+}
+.info{
+    position: relative;
+    color: darkslategray;
+    font-size: 0.5em;
+}
+.info .date{
+    position: absolute;
+    width: 250px;
+    left: 80px;
+}
+.date img{
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    left: 0px;
+    top:3px;
+}
+.date time{
+    position: absolute;
+    font-size: 2em;
+    left:1.5em;
+    top: 0px;
+}
+.info .tag{
+    position: absolute;
+    width: 100px;
+    left: 0px;
+}
+.tag img{
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    left: 0px;
+    top: 3px;
+}
+.tag a{
+    left: 1.5em;
+    position: absolute;
+    text-decoration: none;
+    font-size: 2em;
+    color: darkslategray;
+}
+.tag a:hover{
+    color: darksalmon;
+}
+#pager{
+    background-color: rgba(255,255,255,0.9);
+    height: 1.5em;
+    font-size: 1.5em;
+    border-radius: 0.2em;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.15);
+    position: relative;
+}
+#pager a.pre,a.next{
+    color: darkslategrey;
+    transition: color 0.2s linear;
+    text-decoration: none;
+    position: absolute;
+}
+#pager a.pre:hover,a.next:hover{
+    color:darkslategray;
+}
+#pager a.pre{
+    left:1em;
+}
+#pager a.next{
+    right: 1em;
+}
+
+#nothing{
+    font-size:2em;
+    color: darkslategrey;
+}

@@ -1,0 +1,94 @@
+body{
+    background: #FFFFFF url(/static/image/common/background.png) repeat-y fixed ;
+    background-size: 100%,100%;
+}
+
+div.bigger-container{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 0px;
+    z-index: -1;
+}
+#container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#image-list{
+    position: relative;
+    width: 100%;
+    height:100%;
+    z-index: 1;
+}
+#image-list img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#point-list {
+    position: absolute;
+    margin:auto;
+    bottom: 2%;
+    width: 110px;
+    height: 2.4em;
+    z-index: 50;
+    left: 0;
+    right: 0;
+}
+#container > a{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0.2;
+    width: 4.5em;
+    height: 4.5em;
+    transition: all 0.15s linear;
+}
+#container >a[alt="<"] {
+    left: 2%;
+}
+#container >a[alt=">"] {
+    right:2%;
+}
+#container > a img{
+    witdh:100%;
+    height:100%;
+}
+#container >a:hover{
+    opacity: 0.6;
+    transform: scale(1.1,1.1);
+    -ms-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -o-transform:scale(1.1,1.1);
+}
+#point-list span{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color:lightsteelblue;
+    border-radius: 50%;
+    border: 1px solid white;
+    transition: all 0.15s linear;
+    opacity: 0.65;
+    margin: 0 2px;
+}
+#point-list span:hover{
+    cursor: pointer;
+    background-color: maroon;
+    opacity: 0.9;
+    transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -ms-transform:scale(1.1,1.1);
+    -o-transform:scale(1.1,1.1);
+
+}
+#point-list span.current{
+    background-color: maroon;
+}

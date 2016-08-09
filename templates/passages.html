@@ -1,0 +1,8 @@
+{% extends "mainBase.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/static/css/passages.css">{% endblock %}
+{% block center %}
+    <div id="center">
+    {% include "passagesCenter.html" %}
+    </div>
+{% endblock %}

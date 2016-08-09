@@ -1,0 +1,33 @@
+{% extends "mainBase.html" %}
+{% block title %} YNestA {% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/passages.css">
+{% endblock %}
+{% block center %}
+    <div id="center">
+        <div class="bigger-container">
+        <div id="container">
+            <div id="image-list">
+                <!--<img src="/static/image/image-roll/last-copy.jpg" alt="last-copy">-->
+                <img class="checked" src="/static/image/image-roll/first.jpg" alt="first">
+                <img src="/static/image/image-roll/2.jpg" alt="2">
+                <img src="/static/image/image-roll/3.jpg" alt="3">
+                <img src="/static/image/image-roll/4.jpg" alt="4">
+                <img src="/static/image/image-roll/last.jpg" alt="last">
+                <!--<img src="/static/image/image-roll/first-copy.jpg" alt="first-copy">-->
+            </div>
+            <div id="point-list">
+                <span class="current" alt="first"></span><span alt="2"></span><span alt="3"></span><span alt="4"></span><span alt="last"></span>
+            </div>
+            <a href="javascript:void(0);" alt="<"><img src="/static/image/image-roll/arrow_left_1.png" alt="<"></a>
+            <a href="javascript:void(0);" alt=">"><img src="/static/image/image-roll/arrow_right_1.png" alt=">"></a>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/static/js/homepage.js"></script>
+{% endblock %}
+</body>
+</html>

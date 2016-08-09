@@ -1,0 +1,151 @@
+@import url(passages.css);
+body{
+    background: #FFFFFF  url(/static/image/common/background.png) repeat-y fixed ;
+    background-size: 100%,100%;
+}
+
+article.post textarea{
+    resize:none;
+    border: none;
+    width: 75%;
+    font-size: 1.35em;
+    border: 1px lightgrey solid;
+    border-radius: 3px;
+    background-color:lightgray;
+    background-color: rgba(200,200,150,0.15);
+    color: rgb(20,40,70);
+    padding: 5px;
+}
+
+#comments{
+    padding: 2em 2.5em 1em 2.5em;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 0.5em;
+    box-shadow: 0 0 3px 3px rgba(0,0,0,0.15);
+}
+#comments ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+#comments ul li{
+    display: block;
+    position: relative;
+    border-top: 1px solid gray;
+    width: 100%;
+}
+div.comment-head,div.speak-head{
+    float: left;
+    width: 6%;
+}
+div.comment-head img,div.speak-head img{
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    border: 1px gray;
+}
+div.speak-head img{
+    margin-top: 0px;
+}
+div.comment-body,div.speak-form{
+    width: 80%;
+    float: left;
+    margin: 5px 0px 10px 20px;
+}
+div.speak-form{
+    margin:0px 0px 20px 20px ;
+}
+span.comment-name{
+    font-size: 0.9em;
+    color: crimson;
+}
+p.comment-content{
+    font-size: 0.9em;
+
+}
+div.comment-info{
+    color: gray;
+    font-size: 0.8em;
+}
+
+#speak{
+    border-radius: 0.2em;
+    position: relative;
+}
+
+div.speak-form{
+    width: 75%;
+}
+
+div.up{
+    position: relative;
+    height: 30px;
+    border:1px solid lightgray;
+    border-right: none;
+    border-bottom: none;
+    width: 100%;
+}
+div.up input{
+    position: absolute;
+    padding:0px;
+    margin: 0px;
+    left: 0px;
+    top:0px;
+    height: 30px;
+    width: 80%;
+    border: none;
+    font-family:  "Microsoft Yahei";
+    color:rgb(20,40,70);
+    background-color: lightgray;
+    background-color: rgba(200,200,150,0.2);
+    text-indent: 5px;
+    font-size: 1em;
+}
+div.up button{
+    position: absolute;
+    background-color: cadetblue;
+    color: white;
+    width: 20%;
+    height: 30px;
+    left: 80%;
+    top: 0px;
+    border: none;
+    font-weight: 700;
+    transition: background-color 0.5s;
+}
+div.up button:hover{
+    cursor: pointer;
+    background-color: steelblue ;
+}
+div.down{
+    position: relative;
+    height: 64px;
+    padding: 0px;
+    margin: 0px;
+    border:1px solid lightgray;
+}
+div.down textarea{
+    border: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    resize: none;
+    font-family:  "Microsoft Yahei";
+    color:rgb(20,40,70);
+    background-color: lightgray;
+    background-color: rgba(200,200,150,0.2);
+    spellcheck:false;
+    text-indent: 5px;
+    font-size: 1em;
+}
+#form-error{
+    position: absolute;
+    color: darkred;
+    font-size: 14px;
+    top: -18px;
+    left: 8%;
+    height: 16px;
+}
+
+

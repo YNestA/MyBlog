@@ -1,0 +1,15 @@
+{% extends "mainBase.html" %}
+{% block description %}<meta name="description" content="读过的书,心灵走过的旅途">{% endblock %}
+{% block title %}读书{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/books.css">
+{% endblock %}
+{% block searchType %}"search-book"{% endblock %}
+{% block center %}
+    <div id="center">
+    {% include "booksCenter.html" %}
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/static/js/books.js"></script>
+{% endblock %}
