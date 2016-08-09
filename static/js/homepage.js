@@ -1,9 +1,11 @@
 /**
  * Created by yang on 16-3-21.
  */
+/*
 function caluHeight() {
     $(".bigger-container").css("height",$(window).height());
 }
+*/
 function getAimImage(checked,drection){
     var $aim;
     if(drection==">") {
@@ -47,7 +49,6 @@ $(document).ready(function () {
             $("#container >a[alt='>']").click();
         },2800);
     }
-    caluHeight();
     $("footer").css({"display":"none"})
     $("#image-list img[class!='checked']").hide();
     $("#container > a").click(function(event){
@@ -57,7 +58,6 @@ $(document).ready(function () {
         this.blur();
     });
     $("#point-list span").click(pointRoll);
-    $(window).resize(caluHeight);
     setTimeout(function () {},1500);//第一次载入页面时延迟1.5s开始自动滚动
     var intervalID=setInterval(function () {
         $("#container >a[alt='>']").click();
