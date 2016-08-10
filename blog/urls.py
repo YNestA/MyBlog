@@ -13,5 +13,4 @@ urlpatterns=patterns('',
     url(r'^books/$',views.books),
     url(r'^aboutme/$',views.about_me),
     url(r'^search/',views.search),
-
 )

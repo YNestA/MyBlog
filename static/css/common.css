@@ -7,10 +7,10 @@ body{
 }
 /*html5*/
 article,aside,dialog,footer,header,section,footer,nav,figure,menu{
-    display:block
+    display:block;
 }
-a:focus{
-    outline: none;
+a{
+    color:darkcyan;
 }
 header{
     font-family: "Microsoft Yahei",sans-serif;
