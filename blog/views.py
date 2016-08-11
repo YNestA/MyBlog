@@ -116,5 +116,3 @@ def books(request):
 
 def about_me(request):
     return  passage(request,'000000',None)
-
-

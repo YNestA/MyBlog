@@ -8,7 +8,7 @@ class Comment(models.Model):
     name=models.CharField(max_length=30)
     content=models.TextField(max_length=200)
     time=models.DateTimeField(default=datetime.now)
-    passage_id=models.CharField(max_length=20,null=True)
+    passage_id=models.CharField(max_length=20,null=True)    #以防万一
     visable=models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -49,6 +49,8 @@ class Passage(models.Model):
             page,pre,next=1,False,2
         elif page==max_page:
             page,pre,next=max_page,max_page-1,False
+        else:
+            pre,next=page-1,page+1
         if max_page==1:
             pre,next=False,False
         return {'passages':passages[perpage*(page-1):perpage*(page)],'pre':pre,'next':next}
@@ -56,7 +58,8 @@ class Passage(models.Model):
     def get_passage_id(self,passage_id):
         try:
             passage_need=self.__class__.objects.get(passage_id=passage_id)
-            comment_need=passage_need.comments.filter(passage_id=passage_id,visable=True).order_by("-time")
+            #comment_need=passage_need.comments.filter(passage_id=passage_id,visable=True).order_by("-time")
+            comment_need=passage_need.comments.filter(visable=True).order_by("-time")
         except Exception:
             raise Http404
         return (passage_need,comment_need)
@@ -102,3 +105,10 @@ class RequestRecord(models.Model):
 
     def __unicode__(self):
         return " | ".join([self.addr,self.time.strftime('%c'),self.userAgent])
+
+
+
+
+
+
+

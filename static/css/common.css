@@ -10,6 +10,7 @@ article,aside,dialog,footer,header,section,footer,nav,figure,menu{
     display:block;
 }
 a{
+    outline: none;
     color:darkcyan;
 }
 header{
