@@ -27,17 +27,17 @@ function getAimImage(checked,drection){
 function imageRoll(event) {
     var $checked=$(".checked"),
         $aim=getAimImage($checked,event.target.getAttribute("alt"));
-    $("span.current").attr("class","");
-    $("span[alt='"+$aim.attr('alt')+"']").attr("class","current");
-    $checked.attr("class","").fadeOut(700);
-    $aim.attr("class","checked").fadeIn(700);
+    $("span.current").removeClass("current");
+    $("span[alt='"+$aim.attr('alt')+"']").addClass("current");
+    $checked.removeClass("checked").stop().fadeOut(700);
+    $aim.addClass("checked").stop().fadeIn(700);
 }
 function pointRoll(event){
     var aimAlt=event.target.getAttribute("alt");
-    $("span.current").attr("class","");
+    $("span.current").removeClass("current");
     event.target.setAttribute("class","current");
-    $(".checked").attr({"class":""}).fadeOut(700);
-    $("img[alt='"+aimAlt+"']").attr({"class":"checked"}).fadeIn(700);
+    $(".checked").removeClass("checked").stop().fadeOut(700);
+    $("img[alt='"+aimAlt+"']").addClass("checked").stop().fadeIn(700);
 }
 
 $(document).ready(function () {
