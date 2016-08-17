@@ -60,6 +60,7 @@ def passages(request,page,tag):
                 'time':passage.time,
                 'tag_url':'/home/%s/page1'%passage.tag,
                 'tag': tags[passage.tag],
+                'view_count':passage.view_count,
                 }
               for passage in res['passages']]
     if res['pre']:res['pre']='/home/%s/page%d'%(tag,res['pre'])
@@ -90,11 +91,14 @@ def passage(request,passage_id,tag):
     tags={'note':'笔记','thought':'杂谈'}
     passage_model=models.Passage()
     passage_need,comments_need=passage_model.get_passage_id(passage_id)
+    passage_need.view_count += 1
+    passage_need.save()
     passage_res={'title':passage_need.title,
                  'content':passage_need.content.split('\r\n'),
                  'time':passage_need.time,
                  'tag':tags[passage_need.tag],
-                 'tag_url':'/home/%s/page1'%passage_need.tag
+                 'tag_url':'/home/%s/page1'%passage_need.tag,
+                 'view_count':passage_need.view_count,
                 }
     comments_res=[{'head':'/static/image/common/user.jpg',
                    'name':x.name,

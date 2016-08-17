@@ -37,7 +37,9 @@ body{
     z-index: 1;
 }
 .book img{
+    display:block;
     width: 90%;
+    margin: 0 auto;
     height: 180px;
 }
 .book a.book-name{

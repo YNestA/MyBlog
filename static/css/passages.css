@@ -20,7 +20,6 @@ body{
 
 }
 article.post{
-    margin: 0px 0px 2.5em;
     word-wrap: break-word;
 }
 
@@ -49,49 +48,44 @@ h2.title a:hover{
     margin-bottom: 1em;
 }
 .info{
-    position: relative;
     color: darkslategray;
     font-size: 0.5em;
+    width: 100%;
 }
-.info .date{
-    position: absolute;
-    width: 250px;
-    left: 80px;
+.date,.tag,.viewCount{
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 2em;
 }
-.date img{
+.date img,.tag img{
+    display:block;
     position: absolute;
-    width: 2em;
-    height: 2em;
-    left: 0px;
-    top:3px;
+    margin:auto;
+    top:0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
 }
 .date time{
-    position: absolute;
+    display: block;
+    margin-left: 24px;
     font-size: 2em;
-    left:1.5em;
-    top: 0px;
-}
-.info .tag{
-    position: absolute;
-    width: 100px;
-    left: 0px;
-}
-.tag img{
-    position: absolute;
-    width: 2em;
-    height: 2em;
-    left: 0px;
-    top: 3px;
 }
 .tag a{
-    left: 1.5em;
-    position: absolute;
+    display: block;
+    margin-left: 24px;
     text-decoration: none;
     font-size: 2em;
     color: darkslategray;
 }
 .tag a:hover{
     color: darksalmon;
+}
+.viewCount{
+    font-size: 16px;
+    color: gray;
 }
 #pager{
     background-color: rgba(255,255,255,0.9);
@@ -102,6 +96,8 @@ h2.title a:hover{
     position: relative;
 }
 #pager a.pre,a.next{
+    height: 1.5em;
+    line-height: 1.5em;
     color: darkslategrey;
     transition: color 0.2s linear;
     text-decoration: none;

@@ -29,6 +29,7 @@ class Passage(models.Model):
     comments=models.ManyToManyField(Comment,blank=True)
     visable=models.BooleanField(default=True)
     passage_id=models.CharField(max_length=20,unique=True)
+    view_count=models.IntegerField(default=1)
 
     def __unicode__(self):
         return self.title
