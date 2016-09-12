@@ -1,5 +1,5 @@
 body{
-    background: #FFFFFF url(/static/image/common/background.png) repeat-y fixed ;
+    background: #FFFFFF url(/static/image/common/background.jpg) repeat-y fixed ;
     background-size: 100%,100%;
 }
 
@@ -80,7 +80,7 @@ div.bigger-container{
 }
 #point-list span:hover{
     cursor: pointer;
-    background-color: maroon;
+    background-color: darkcyan;
     opacity: 0.9;
     transform:scale(1.1,1.1);
     -moz-transform:scale(1.1,1.1);
@@ -90,5 +90,5 @@ div.bigger-container{
 
 }
 #point-list span.current{
-    background-color: maroon;
+    background-color: darkcyan;
 }

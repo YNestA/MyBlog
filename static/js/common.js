@@ -158,6 +158,9 @@ $(document).ready(function(){
     $("img").error(function () {
         $(this).attr("src","/static/image/common/default.jpg");
     });
+    $("button,a").focus(function () {
+       $(this).blur();
+    });
 });
 
 

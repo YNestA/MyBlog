@@ -1,6 +1,6 @@
 
 body{
-    background: #FFFFFF  url(/static/image/common/background.png) repeat-y fixed ;
+    background: #FFFFFF  url(/static/image/common/background.jpg) repeat-y fixed ;
     background-size: 100%,100%;
 }
 
@@ -16,7 +16,7 @@ body{
     background-color: rgba(255,255,255,0.95);
     margin-bottom:2.5em ;
     border-radius: 0.5em;
-    box-shadow: 0 0 3px 3px rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px 3px rgba(0,0,0,0.1);
 
 }
 article.post{
@@ -41,7 +41,7 @@ h2.title a:hover{
     font-size: 1em;
     letter-spacing: 2px;
     line-height: 1.5em;
-    margin: 0px 0px 20px;
+    margin: 20px 0px ;
 }
 .what p,.what xmp{
     white-space: pre-wrap;
