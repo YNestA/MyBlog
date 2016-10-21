@@ -16,6 +16,7 @@ article,aside,dialog,footer,header,section,footer,nav,figure,menu{
 a{
     outline: none;
     color:darkcyan;
+    text-decoration: none;
 }
 header{
     position: relative;

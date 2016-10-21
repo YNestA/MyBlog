@@ -56,14 +56,14 @@ class Passage(models.Model):
             pre,next=False,False
         return {'passages':passages[perpage*(page-1):perpage*(page)],'pre':pre,'next':next}
 
-    def get_passage_id(self,passage_id):
+    def get_passage_id(self,passage_id,comments_per=10):
         try:
             passage_need=self.__class__.objects.get(passage_id=passage_id)
             #comment_need=passage_need.comments.filter(passage_id=passage_id,visable=True).order_by("-time")
             comment_need=passage_need.comments.filter(visable=True).order_by("-time")
         except Exception:
             raise Http404
-        return (passage_need,comment_need)
+        return (passage_need,comment_need[:comments_per],len(comment_need)>comments_per)
 
     def get_passages_search(self,search_info):
         try:
@@ -75,6 +75,14 @@ class Passage(models.Model):
                 res.append(passages[index])
         return res
 
+    def get_comments(self,page,comments_per=10):
+        page=int(page)
+        the_comments=self.comments.all().order_by("-time")
+        length=len(the_comments)
+        whole_page=length/comments_per if length%comments_per==0 else length/comments_per+1
+        if page<1:page=1
+        if page>whole_page:page=whole_page
+        return (the_comments[(page-1)*comments_per:page*comments_per],page,whole_page)
 
 class Book(models.Model):
     name=models.CharField(max_length=30)

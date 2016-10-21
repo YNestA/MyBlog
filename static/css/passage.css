@@ -156,5 +156,13 @@ div.down textarea:focus{
     left: 8%;
     height: 16px;
 }
+#comments_pager{
+    text-align: right;
+}
+#comments_next_btn,#comments_prev_btn{
+    display: inline-block;
+    margin: 0 15px;
+}
+
 
 

@@ -6,7 +6,7 @@
     <div id="center">
     <div id="main">
         <div class="content">
-            <article class="post">
+            <article class="post" data-id="{{ passage.id }}">
                 <h2 class="title"><a>{{ passage.title }}</a></h2>
                 <hr>
                 <div class="what">{% for pf in passage.content %}<p class='my-p'>{{pf|safe}}</p>{% endfor %}</div>
@@ -31,7 +31,7 @@
         </div>
             <div style="clear: both"></div>
         </div>
-        <ul>
+        <ul id="comments_ul">
         {% if comments %}
             {% for comment in comments %}
                 <li >
@@ -48,6 +48,17 @@
             {% endfor %}
         {% endif %}
         </ul>
+        <div id="comments_pager" data-page="{{ comments_pager.page }}">
+        {% if comments_pager.prev_comments %}
+            <a id="comments_prev_btn" href="javascript:;">上一页</a>
+            {% else %}
+            <a id="comments_prev_btn" href="javascript:;" style="visibility: hidden;">上一页</a>
+        {% endif %}
+        {% if comments_pager.next_comments %}
+            <a id="comments_next_btn" href="javascript:;">下一页</a>
+            {% else %}
+            <a id="comments_next_btn" href="javascript:;" style="visibility: hidden;">下一页</a>
+        {% endif %}
         </div>
     </div>
     </div>

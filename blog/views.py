@@ -90,7 +90,7 @@ def passage(request,passage_id,tag):
 
     tags={'note':'笔记','thought':'杂谈'}
     passage_model=models.Passage()
-    passage_need,comments_need=passage_model.get_passage_id(passage_id)
+    passage_need,comments_need,if_next_comments=passage_model.get_passage_id(passage_id)
     passage_need.view_count += 1
     passage_need.save()
     passage_res={'title':passage_need.title,
@@ -99,6 +99,7 @@ def passage(request,passage_id,tag):
                  'tag':tags[passage_need.tag],
                  'tag_url':'/home/%s/page1'%passage_need.tag,
                  'view_count':passage_need.view_count,
+                 "id":passage_need.id,
                 }
     comments_res=[{'head':'/static/image/common/user.jpg',
                    'name':x.name,
@@ -110,6 +111,11 @@ def passage(request,passage_id,tag):
     return render_to_response("passage.html",{'passage':passage_res,
                                               'comments':comments_res,
                                               'form':form,
+                                              'comments_pager':{
+                                                    "page":1,
+                                                    "prev_comments":False,
+                                                    "next_comments":if_next_comments,
+                                              }
                                               },context_instance=RequestContext(request))
 @recorder
 def books(request):
@@ -120,3 +126,27 @@ def books(request):
 
 def about_me(request):
     return  passage(request,'000000',None)
+
+@recorder
+def more_comments(request):
+    if request.method=="POST":
+        try:
+            page,passage_id=request.POST.get("page","1"),request.POST["passage_id"]
+            the_passage=models.Passage.objects.get(id=passage_id)
+            comments,page,whole_page=the_passage.get_comments(page)
+            params={
+                "res":"success",
+                "comments":[{
+                    "head":"/static/image/common/user.jpg",
+                    "name":x.name,
+                    "content":x.content.split("\r\n"),
+                    "time":x.time.strftime("%Y-%m-%d %H:%M:%S"),
+                } for x in comments],
+                "page":str(page),
+                "whole_page":str(whole_page),
+            }
+            return HttpResponse(json.dumps(params))
+        except Exception as e:
+            print e
+            return HttpResponse(json.dumps({"res":"fail"}))
+

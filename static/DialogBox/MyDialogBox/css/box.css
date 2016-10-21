@@ -1,0 +1,161 @@
+#my-dialog-cover{
+    position: fixed;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom: 0px;
+    background-color: darkslategrey;
+    opacity: 0.1;
+    z-index: 100000;
+}
+div.alert-box,div.confirm-box{
+    z-index: 100000;
+    position: fixed;
+    background-color:rgba(39,72,98,0.95);
+    margin: auto;
+    left: 0px;
+    right:0px;
+    top:0px;
+    bottom: 0px;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    -moz-transform:scale(0,0);
+    -webkit-transform: scale(0,0);
+}
+div.box-open-anim{
+    transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    -moz-transform:scale(1,1);
+    -webkit-transform: scale(1,1);
+}
+
+div.box-close-anim{
+    transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    -moz-transform:scale(0,0);
+    -webkit-transform: scale(0,0);
+}
+div.alert-box{
+    width: 250px;
+    height: 70px;
+    overflow: hidden;
+}
+div.alert-message{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 70px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    height: 100%;
+}
+span.alert-close{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+span.alert-close img{
+    width: 100%;
+    height: 100%;
+}
+
+div.confirm-box{
+    width: 250px;
+    height: 120px;
+    overflow: hidden;
+}
+div.confirm-message{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 90px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    height: 75%;
+}
+div.confirm-btns{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 25%;
+}
+button.confirm-true,button.confirm-false{
+    width: 50%;
+    height: 100%;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+button.confirm-true{
+    color: white;
+    background-color: rgba(153,80,84,0.3);
+    transition: all 0.2s linear;
+}
+button.confirm-true:hover{
+    background-color: rgba(153,80,84,0.5);
+}
+button.confirm-false{
+    color: darkslategrey;
+    background-color: white;
+    transition: all 0.2s linear;
+}
+
+.tip-box{
+    width: 250px;
+    position: absolute;
+    background-color: rgb(66,66,99);
+    border-radius: 5px;
+    border: 1px lightgray solid;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.15);
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    color:whitesmoke;
+    word-wrap: break-word;
+    z-index: 100000;
+}
+.tip-message{
+    display: block;
+    padding: 10px;
+}
+.tip-arrow,.tip-arrow-border{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid;
+}
+.tip-arrow-bottom{
+    left:10%;
+    top: -19px;
+    border-color:transparent transparent rgb(66,66,99) transparent;
+}
+.tip-arrow-border-bottom{
+    left:10%;
+    top: -20px;
+    border-color:transparent transparent lightgray transparent;
+}
+.tip-arrow-right{
+    top:20%;
+    left:-19px;
+    border-color: transparent rgb(66,66,99) transparent transparent;
+}
+.tip-arrow-border-right{
+    top:20%;
+    left:-20px;
+    border-color: transparent lightgray transparent transparent;
+}
+
+

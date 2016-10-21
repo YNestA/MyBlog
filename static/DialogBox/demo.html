@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyDialogBox</title>
+    <link rel="stylesheet" type="text/css" href="MyDialogBox/css/box.css">
+    <style>
+        #warp{
+            position: absolute;
+            top:200px;
+            left: 400px;
+        }
+        #warp a{
+            float:left;
+            display:block;
+            width: 100px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            background-color: cadetblue;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="warp">
+    <a id="jsAlert-btn" href="javascript:;" onclick="alert('hhhh');">jsAlert</a>
+    <a id="jsConfirm" href="javascript:;" onclick="confirm('hhhh')">jsConfirm</a><br>
+    <a id="myAlert-btn" href="javascript:;">myAlert</a>
+    <a id="myConfirm-btn" href="javascript:;">myConfirm</a>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="MyDialogBox/js/jquery.myDialogBox-1.0.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+</body>
+</html>
