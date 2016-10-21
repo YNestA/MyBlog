@@ -6,7 +6,8 @@ body{
 #center {
     width: 100%;
     background-color: rgba(255,255,255,0.90);
-
+    overflow: hidden;
+    height: 100%;
 }
 #main{
     width: 100%;

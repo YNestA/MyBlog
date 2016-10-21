@@ -1,8 +1,12 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body{
     background: #FFFFFF  repeat-y fixed ;
     background-size: 100%,100%;
-    margin: 0px;
-    padding: 0px;
     font-family: "Microsoft Yahei","Hiragino Sans GB",Helvetica,"Helvetica Neue","微软雅黑",Tahoma,Arial,sans-serif;
 }
 /*html5*/
@@ -14,6 +18,7 @@ a{
     color:darkcyan;
 }
 header{
+    position: relative;
     font-family: "Microsoft Yahei",sans-serif;
     background-color:rgba(20,20,20,0.8);
     width: 100%;
