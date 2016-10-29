@@ -146,6 +146,18 @@ function keySearch(event) {
     }
 }
 
+function headerDrop(event) {
+    event.stopPropagation();
+    var $headerDropList=$("#header_drop_list");
+    $headerDropList.slideToggle(200).click(function (event) {
+        event.stopPropagation();
+    });
+    $("body,html").click(function (event) {
+        $headerDropList.slideUp(200);
+        $("body,html").unbind(arguments.callee);
+    })
+}
+
 $(document).ready(function(){
     //MyEventUtil.addHandler(searchBtn,"click",search);
     $('#search-button').click(search);
@@ -161,6 +173,7 @@ $(document).ready(function(){
     $("button,a").focus(function () {
        $(this).blur();
     });
+    $("#header_drop_btn").click(headerDrop)
 });
 
 

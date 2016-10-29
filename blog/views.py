@@ -6,10 +6,17 @@ from django.http import HttpResponse
 import json
 from tools import *
 import models
+from oAuth.oAuth_session import *
 
+@change_session_path
+@recorder
 def homepage(request,page):
+    template_params={
+    }
+    set_weibo_user(request,template_params)
     #return passages(request,page,None)
-    return render_to_response("homepage.html")
+    return render_to_response("homepage.html",template_params,context_instance=RequestContext(request))
+
 
 @recorder
 def search(request):
@@ -49,8 +56,11 @@ def search_book(request):
             return render_to_response('booksCenter.html', {'books': book_res}, context_instance=RequestContext(request))
     return ""
 
+@change_session_path
 @recorder
 def passages(request,page,tag):
+    template_params={}
+    set_weibo_user(request,template_params)
     tags={'note':'笔记','thought':'杂谈'}
     passage_model=models.Passage()
     res=passage_model.get_passages_page(int(page),tag=tag)
@@ -65,28 +75,17 @@ def passages(request,page,tag):
               for passage in res['passages']]
     if res['pre']:res['pre']='/home/%s/page%d'%(tag,res['pre'])
     if res['next']:res['next']='/home/%s/page%d'%(tag,res['next'])
-    return render_to_response('passages.html',{ 'title':tags.get(tag,'YNestA'),
-                                                'passages':passages,
-                                               'next':res['next'],
-                                                'pre':res['pre']},
-                                                context_instance=RequestContext(request))
+    template_params['title']=tags.get(tag,'YNestA')
+    template_params['passages']=passages
+    template_params['next']=res['next']
+    template_params['pre']=res['pre']
+    return render_to_response('passages.html',template_params,context_instance=RequestContext(request))
+
+@change_session_path
 @recorder
 def passage(request,passage_id,tag):
-    if request.method=='POST':
-        req=json.loads(request.body)
-        comment_info={
-            'nickname':req['nickname'],
-            'content':req['content'],
-        }
-        comment_model=models.Comment()
-        theComment=comment_model.save_comment(comment_info,passage_id)
-        theJson=json.dumps({'head':'/static/image/common/user.jpg',
-                    'name':theComment.name,
-                   'content':theComment.content.split('\r\n'),
-                   'time':theComment.time,
-                },cls=DatetimeEncoder)
-        return HttpResponse(theJson)
-
+    template_params={}
+    set_weibo_user(request,template_params)
 
     tags={'note':'笔记','thought':'杂谈'}
     passage_model=models.Passage()
@@ -101,28 +100,34 @@ def passage(request,passage_id,tag):
                  'view_count':passage_need.view_count,
                  "id":passage_need.id,
                 }
-    comments_res=[{'head':'/static/image/common/user.jpg',
+    comments_res=[{'head_img':x.head_img,
                    'name':x.name,
                    'content':x.content.split('\r\n'),
                    'time':x.time,
+                   'profile_url':x.profile_url,
                   }
                   for x in comments_need]
     form=CommentForm()
-    return render_to_response("passage.html",{'passage':passage_res,
-                                              'comments':comments_res,
-                                              'form':form,
-                                              'comments_pager':{
-                                                    "page":1,
-                                                    "prev_comments":False,
-                                                    "next_comments":if_next_comments,
-                                              }
-                                              },context_instance=RequestContext(request))
+    template_params['passage']=passage_res
+    template_params['comments']=comments_res
+    template_params['form']=form
+    template_params['comments_pager']={
+        "page": 1,
+        "prev_comments": False,
+        "next_comments": if_next_comments,
+    }
+    return render_to_response("passage.html",template_params,context_instance=RequestContext(request))
+
+@change_session_path
 @recorder
 def books(request):
+    template_params={}
+    set_weibo_user(request,template_params)
     book_model=models.Book()
     book_need=book_model.get_books()
     book_res=build_book_res(book_need)
-    return render_to_response('books.html',{'books':book_res},context_instance=RequestContext(request))
+    template_params['books']=book_res
+    return render_to_response('books.html',template_params,context_instance=RequestContext(request))
 
 def about_me(request):
     return  passage(request,'000000',None)
@@ -137,10 +142,11 @@ def more_comments(request):
             params={
                 "res":"success",
                 "comments":[{
-                    "head":"/static/image/common/user.jpg",
+                    "head_img":x.head_img,
                     "name":x.name,
                     "content":x.content.split("\r\n"),
                     "time":x.time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "profile_url":x.profile_url,
                 } for x in comments],
                 "page":str(page),
                 "whole_page":str(whole_page),
@@ -150,3 +156,32 @@ def more_comments(request):
             print e
             return HttpResponse(json.dumps({"res":"fail"}))
 
+@recorder
+def add_comment(request):
+    try:
+        IP,flag=request.META.get('REMOTE_ADDR'),True
+        IPs=models.CommentIP.objects.filter(IP=IP)
+        if IPs:
+            the_ip=IPs[0]
+            if the_ip.if_forbidden:
+                return HttpResponse(json.dumps({'res':'fail'}))
+            elif datetime_to_timestamp(datetime.now())-datetime_to_timestamp(the_ip.time)<5:
+                return HttpResponse(json.dumps({'res':"fail","reason":"too many"}))
+            else:
+                IPs[0].time = datetime.now()
+                IPs[0].save()
+        else:
+            the_ip=models.CommentIP(IP=IP)
+            the_ip.save()
+        if request.method=="POST":
+            comment_info={
+                "name":request.POST["name"],
+                "profile_url":request.POST["profile_url"],
+                "content":request.POST["content"],
+                "head_img":request.POST["head_img"],
+            }
+            the_comment=models.Comment.save_comment(comment_info,request.POST["passage_id"])
+            return HttpResponse(json.dumps({"res":"success","time":the_comment.time.strftime("%Y-%m-%d %H:%M:%S")}))
+    except Exception as e:
+        print e
+        return HttpResponse(json.dumps({"res":"fail"}))

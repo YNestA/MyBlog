@@ -31,6 +31,7 @@ function imageRoll(event) {
     $("span[alt='"+$aim.attr('alt')+"']").addClass("current");
     $checked.removeClass("checked").stop().fadeOut(700);
     $aim.addClass("checked").stop().fadeIn(700);
+    event.stopPropagation();
 }
 function pointRoll(event){
     var aimAlt=event.target.getAttribute("alt");

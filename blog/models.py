@@ -6,19 +6,24 @@ from django.http import Http404
 
 class Comment(models.Model):
     name=models.CharField(max_length=30)
-    content=models.TextField(max_length=200)
+    content=models.TextField(max_length=500)
     time=models.DateTimeField(default=datetime.now)
-    passage_id=models.CharField(max_length=20,null=True)    #以防万一
     visable=models.BooleanField(default=True)
+    head_img=models.CharField(max_length=500,default="/static/image/common/user.jpg")
+    profile_url=models.CharField(max_length=500,default="#")
 
     def __unicode__(self):
         return self.content
-
-    def save_comment(self,comment_info,passage_id):
-        new_comment=self.__class__(name=comment_info['nickname'],content=comment_info['content'],passage_id=passage_id)
-        new_comment.save()
-        Passage.objects.get(passage_id=passage_id).comments.add(new_comment)
-        return new_comment
+    @staticmethod
+    def save_comment(comment_info,passage_id):
+        try:
+            passage_id=int(passage_id)
+            new_comment=Comment(name=comment_info['name'],content=comment_info['content'],head_img=comment_info.get("head_img","/static/image/common/user.jpg"),profile_url=comment_info.get("profile_url","#"))
+            new_comment.save()
+            Passage.objects.get(id=passage_id).comments.add(new_comment)
+            return new_comment
+        except Exception as e:
+            print e
 
 class Passage(models.Model):
     title=models.CharField(max_length=50)
@@ -26,7 +31,7 @@ class Passage(models.Model):
     content=models.TextField()
     tag=models.CharField(max_length=50)
     time=models.DateTimeField(default=datetime.now)
-    comments=models.ManyToManyField(Comment,blank=True)
+    comments=models.ManyToManyField(Comment,blank=True,related_name="as_comment_for_passage")
     visable=models.BooleanField(default=True)
     passage_id=models.CharField(max_length=20,unique=True)
     view_count=models.IntegerField(default=1)
@@ -113,8 +118,15 @@ class RequestRecord(models.Model):
     refere=models.CharField(max_length=200)
 
     def __unicode__(self):
-        return " | ".join([self.addr,self.time.strftime('%c'),self.userAgent])
+        return " | ".join([self.path,self.addr,self.time.strftime('%c'),self.userAgent])
 
+class CommentIP(models.Model):
+    IP=models.CharField(max_length=100)
+    time=models.DateTimeField(default=datetime.now)
+    if_forbidden=models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return " | ".join([self.IP,self.time.strftime('%c'),str(self.if_forbidden)])
 
 
 

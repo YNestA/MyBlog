@@ -117,3 +117,7 @@ h2.title a:hover{
     font-size:2em;
     color: darkslategrey;
 }
+
+#comment_form_left img,div.comment-head img{
+    transition: all 0.6s;
+}

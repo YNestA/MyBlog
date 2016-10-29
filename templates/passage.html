@@ -1,5 +1,6 @@
 {% extends "mainBase.html" %}
-{% block description %}<meta name="description" content="{{ passage.title }}">{% endblock %}
+{% block description %}
+    <meta name="description" content="{{ passage.title }}" xmlns="http://www.w3.org/1999/html">{% endblock %}
 {% block title %}{{ passage.title }}{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="/static/css/passage.css">{% endblock %}
 {% block center %}
@@ -19,47 +20,51 @@
             </article>
         </div>
         <div id="comments">
-        <div id="speak">
-            <span id="form-error"></span>
-        <div class="speak-head"><img src="/static/image/common/user.jpg"></div>
-        <div class="speak-form">
-            <form id="comment-form" method="post" action="{{ passage.addComment }}">
-                {% csrf_token %}
-                <div class="up">{{ form.nickname }}<button id="submit-button" type="submit" >发布</button></div>
-                <div class="down">{{ form.content }}</div>
-            </form>
-        </div>
-            <div style="clear: both"></div>
-        </div>
+            <div id="speak">
+                <div id="make_a_comment">Make a Comment</div>
+                {% if weibo_user %}
+                    <form id="comment_form">
+                        <div id="comment_form_left"><a href="{{ weibo_user.profile_url }}"><img src="{{weibo_user.head_img}}"></a></div>
+                        <div id="comment_form_right">
+                            <span id="comment_user_name"><a href="{{weibo_user.profile_url}}">{{ weibo_user.weibo_user_name }}</a></span>
+                            <textarea spellcheck="false" placeholder="说点什么..." maxlength="500"></textarea>
+                            <div id="comment_form_handle"><button id="clear_btn" type="button">清空</button><button type="button" id="comment_submit_btn">提交</button></div>
+                        </div>
+                    </form>
+                {% else %}
+                    <a id="login_to_comment_btn" href="https://api.weibo.com/oauth2/authorize?client_id=2869046962&response_type=code&redirect_uri=http://ynesta.me/oAuth/oAuth_redirect/">Login Weibo to Make a Comment </a>
+                {% endif %}
+                <div style="clear: both"></div>
+            </div>
         <ul id="comments_ul">
         {% if comments %}
             {% for comment in comments %}
                 <li >
-                    <div class="comment-head"><img src={{ comment.head}}></div>
+                    <div class="comment-head"><a href="{{ comment.profile_url }}"><img src={{ comment.head_img}}></a></div>
                     <div class="comment-body">
-                    <span class="comment-name">{{ comment.name }}</span>
+                        <span class="comment-name"><a href="{{ comment.profile_url }}" >{{ comment.name }}</a></span>
                         {% for ph in comment.content%}
-                    <p class="comment-content">{{ ph }}</p>
-                            {% endfor %}
-                    <div class="comment-info"><time>{{ comment.time | date:"Y-m-d H:i:s"}}</time></div>
+                            <p class="comment-content">{{ ph }}</p>
+                        {% endfor %}
+                        <div class="comment-info"><time>{{ comment.time | date:"Y-m-d H:i:s"}}</time></div>
                     </div>
                     <div style="clear: both"></div>
-                    </li>
+                </li>
             {% endfor %}
         {% endif %}
         </ul>
-        <div id="comments_pager" data-page="{{ comments_pager.page }}">
-        {% if comments_pager.prev_comments %}
-            <a id="comments_prev_btn" href="javascript:;">上一页</a>
-            {% else %}
-            <a id="comments_prev_btn" href="javascript:;" style="visibility: hidden;">上一页</a>
-        {% endif %}
-        {% if comments_pager.next_comments %}
-            <a id="comments_next_btn" href="javascript:;">下一页</a>
-            {% else %}
-            <a id="comments_next_btn" href="javascript:;" style="visibility: hidden;">下一页</a>
-        {% endif %}
-        </div>
+            <div id="comments_pager" data-page="{{ comments_pager.page }}">
+                {% if comments_pager.prev_comments %}
+                    <a id="comments_prev_btn" href="javascript:;">上一页</a>
+                {% else %}
+                    <a id="comments_prev_btn" href="javascript:;" style="visibility: hidden;">上一页</a>
+                {% endif %}
+                {% if comments_pager.next_comments %}
+                    <a id="comments_next_btn" href="javascript:;">下一页</a>
+                {% else %}
+                    <a id="comments_next_btn" href="javascript:;" style="visibility: hidden;">下一页</a>
+                {% endif %}
+            </div>
     </div>
     </div>
 {% endblock %}

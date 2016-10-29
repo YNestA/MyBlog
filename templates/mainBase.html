@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block meta %}{% endblock %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
@@ -11,23 +12,40 @@
     <link rel="stylesheet" type="text/css" href="/static/DialogBox/MyDialogBox/css/box.css">
     {% block css %}{% endblock %}
 </head>
-<body>
+<body data-csrftoken="{{ csrf_token }}">
     {% block header %}
         <header>
-        <nav>
-        <ul>
-            <a id="logo" href="/home/"><img src="/static/image/common/logo.png"></a>
-            <li><a href="/home/aboutme/">关于我</a></li>
-            <li><a href="/home/books/">书籍</a></li>
-            <li><a href="/home/note/page1">笔记</a></li>
-            <li><a href="/home/thought/page1/">杂谈</a></li>
-        </ul>
+            <div id="header_drop">
+                <img id="header_drop_btn" src="/static/image/common/arrow_drop_down.png">
+                <div id="header_drop_list">
+                {% if weibo_user %}
+                    <div id="header_drop_user_info">
+                        <a href="{{ weibo_user.profile_url }}"><img src="{{ weibo_user.head_img }}"><span>{{ weibo_user.weibo_user_name }}</span></a>
+                    </div>
+                    <ul>
+                        <li><a href="/oAuth/sign_out/">Sign Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul><li><a href="https://api.weibo.com/oauth2/authorize?client_id=2869046962&response_type=code&redirect_uri=http://ynesta.me/oAuth/oAuth_redirect/">Sign In</a></li></ul>
+                {% endif %}
+                    <div id="header_drop_arrow_border"></div>
+                    <div id="header_drop_arrow"></div>
+                </div>
+            </div>
+            <div class="search">
+                <input id="search-input" type="text" name={% block searchType %}"search-passage"{% endblock %}>
+                <a id="search-button" href="javascript:;"><img src="/static/image/common/search.png"></a>
+                <span id="search-shade"></span>
+            </div>
+            <nav>
+                <ul>
+                    <a id="logo" href="/home/"><img src="/static/image/common/logo.png"></a>
+                    <li><a href="/home/aboutme/">关于我</a></li>
+                    <li><a href="/home/books/">书籍</a></li>
+                    <li><a href="/home/note/page1">笔记</a></li>
+                    <li><a href="/home/thought/page1/">杂谈</a></li>
+                </ul>
             </nav>
-        <div class="search">
-            <input id="search-input" type="text" name={% block searchType %}"search-passage"{% endblock %}>
-            <a id="search-button" href="javascript:;"><img src="/static/image/common/search.png"></a>
-            <span id="search-shade"></span>
-        </div>
         </header>
     {% endblock %}
     {% block center %}
@@ -42,6 +60,7 @@
     <script type="text/javascript" src="/static/js/dealCSRF.js"></script>
     <script type="text/javascript" src="/static/DialogBox/MyDialogBox/js/jquery.myDialogBox-1.0.js"></script>
     <script type="text/javascript" src="/static/js/common.js"></script>
+
     <!--[if lte IE 9]>
 	<script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="/static/selectivizr-master/selectivizr.js"></script>
