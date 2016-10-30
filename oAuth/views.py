@@ -35,7 +35,7 @@ def oAuth_redirect(request):
                 "name": user_show["name"],
                 "head_img":user_show["profile_image_url"],
                 "profile_url":"https://weibo.com/"+user_show["profile_url"],
-            })
+            },int(info_dict["expires_in"]))
             print user_show["profile_url"]
         return HttpResponseRedirect(page_path)
     except Exception as e:

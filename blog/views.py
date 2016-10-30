@@ -180,6 +180,14 @@ def add_comment(request):
                 "content":request.POST["content"],
                 "head_img":request.POST["head_img"],
             }
+            weibo_user={
+                "name":request.session.get("name",""),
+                "profile_url": request.session.get("profile_url", ""),
+                "head_img": request.session.get("head_img", ""),
+            }
+            for k in weibo_user:
+                if comment_info[k]!=weibo_user[k]:
+                    return HttpResponse(json.dumps({"res":"fail","reason":"not match"}))
             the_comment=models.Comment.save_comment(comment_info,request.POST["passage_id"])
             return HttpResponse(json.dumps({"res":"success","time":the_comment.time.strftime("%Y-%m-%d %H:%M:%S")}))
     except Exception as e:

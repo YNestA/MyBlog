@@ -2,10 +2,11 @@
 
 keys=("access_token","uid","name","head_img","profile_url")
 
-def set_base_auth_session(request,auth_dict):
+def set_base_auth_session(request,auth_dict,age):
     for key in keys:
         if auth_dict.get(key,None):
             request.session[key]=auth_dict[key]
+    request.session.set_expiry(age)
 
 def del_base_auth_session(request):
     for key in keys:
