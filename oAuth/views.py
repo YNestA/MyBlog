@@ -5,6 +5,7 @@ import urllib,httplib
 from oAuth_settings import *
 import json
 from oAuth_session import *
+from models import WeiboLoginRecord
 # Create your views here.
 
 
@@ -36,7 +37,7 @@ def oAuth_redirect(request):
                 "head_img":user_show["profile_image_url"],
                 "profile_url":"https://weibo.com/"+user_show["profile_url"],
             },int(info_dict["expires_in"]))
-            print user_show["profile_url"]
+            WeiboLoginRecord.save_record(uid,user_show["name"],user_show["profile_url"],user_show["profile_image_url"])
         return HttpResponseRedirect(page_path)
     except Exception as e:
         print e

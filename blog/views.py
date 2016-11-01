@@ -7,6 +7,7 @@ import json
 from tools import *
 import models
 from oAuth.oAuth_session import *
+from blog_settings import *
 
 @change_session_path
 @recorder
@@ -165,7 +166,7 @@ def add_comment(request):
             the_ip=IPs[0]
             if the_ip.if_forbidden:
                 return HttpResponse(json.dumps({'res':'fail'}))
-            elif datetime_to_timestamp(datetime.now())-datetime_to_timestamp(the_ip.time)<5:
+            elif datetime_to_timestamp(datetime.now())-datetime_to_timestamp(the_ip.time)<COMMENT_PER_TIME:
                 return HttpResponse(json.dumps({'res':"fail","reason":"too many"}))
             else:
                 IPs[0].time = datetime.now()

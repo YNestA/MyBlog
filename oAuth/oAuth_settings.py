@@ -2,7 +2,7 @@
 
 WEIBO_APP={
     "app_key":"2869046962",
-    "app_secret":"c7cea40b258886c646b4e0f9cdeaafa6",
+    "app_secret":"******",
     "redirect_uri":"http://ynesta.me/oAuth/oAuth_redirect/"
 }
 
