@@ -176,6 +176,7 @@ div.down textarea:focus{
     cursor: pointer;
     border-radius: 3px;
     margin-left: 5px;
+    padding: 2px 5px;
 }
 #clear_btn{
     background-color: #eee;
@@ -197,6 +198,9 @@ img.head_right_scroll{
 }
 img.head_left_scroll{
     transform: rotate(-360deg) scale(1,1);
+}
+#comment_form_left img,div.comment-head img{
+    transition: transform 0.6s;
 }
 
 

@@ -6,6 +6,7 @@ body{
 
 #center{
     width: 100%;
+    padding-bottom: 60px;
 }
 #main{
     width: 80%;
@@ -118,6 +119,4 @@ h2.title a:hover{
     color: darkslategrey;
 }
 
-#comment_form_left img,div.comment-head img{
-    transition: all 0.6s;
-}
+

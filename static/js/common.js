@@ -134,7 +134,7 @@ function search(){
 
         });
         if($("footer").css("display")=="none"){
-            $("footer").css({"display":"inline"});
+            $("footer").css({"display":"block"});
         }
     }
 

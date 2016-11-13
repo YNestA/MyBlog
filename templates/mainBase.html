@@ -13,6 +13,7 @@
     {% block css %}{% endblock %}
 </head>
 <body data-csrftoken="{{ csrf_token }}">
+    <div id="whole_container">
     {% block header %}
         <header>
             <div id="header_drop">
@@ -50,9 +51,13 @@
     {% endblock %}
     {% block center %}
     {% endblock %}
+    </div>
     {% block footer %}
         <footer>
-        <p>powered by Yang xy<a class="github" target="_blank" href="https://github.com/YNestA"><img src="/static/image/common/my-github.png"></a></p>
+        <span id="power_info">powered by Yang xy</span>
+        <a class="github" target="_blank" href="https://github.com/YNestA">
+            <img src="/static/image/common/my-github.png">
+        </a>
         <a id="go-top" href="javascript:void (0);"></a>
         </footer>
     {% endblock %}
