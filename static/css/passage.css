@@ -57,7 +57,7 @@ span.comment-name{
     font-size: 0.9em;
 }
 span.comment-name a{
-    color: rgb(3,54,73);
+    color: rgb(30,80,130);
 }
 span.comment-name a:hover{
     text-decoration: underline;

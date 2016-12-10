@@ -19,6 +19,9 @@ a{
     color:darkcyan;
     text-decoration: none;
 }
+img{
+    border: none;
+}
 #whole_container{
     min-height: 100%;
     height: auto !important;
@@ -89,7 +92,7 @@ header div.search input{
     bottom: 0;
     border:solid gray 1px;
     height: 1.5em;
-    width: 100%;
+    padding-right: 2em;
     border-radius: 1em;
     font-family:  "Microsoft Yahei";
     transition: border 0.5s linear,width 0.5s linear;
@@ -105,7 +108,7 @@ header div.search a,#search-shade{
     width: 1.5em;
     height:1.5em;
     top:0.75em;
-    right:0;
+    right:0.2em;
 }
 #search-shade{
     display: none;
