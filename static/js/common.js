@@ -173,7 +173,20 @@ $(document).ready(function(){
     $("button,a").focus(function () {
        $(this).blur();
     });
-    $("#header_drop_btn").click(headerDrop)
+    //$("#header_drop_btn").click(headerDrop)
+    var headerDropVM=new Vue({
+        el:"#header_drop",
+        methods:{
+            headerDrop:function(event){
+                var $headerDropList=$("#header_drop_list");
+                $headerDropList.slideToggle(200);
+                $("body,html").click(function (event) {
+                    $headerDropList.slideUp(200);
+                    $("body,html").unbind(arguments.callee);
+                })
+            },
+        },
+    });
 });
 
 
