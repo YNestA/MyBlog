@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^oAuth/',include('oAuth.urls')),
     url(r'^home/',include('blog.urls')),
+    url(r'^ToDoList/',include('ToDoList.urls')),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': STATICFILES_DIRS[0],}),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/image/common/favicon.ico')),
 ]

@@ -25,7 +25,7 @@
                 <div id="header_drop_list" @click.stop="">
                 {% if weibo_user %}
                     <div id="header_drop_user_info">
-                        <a href="{{ weibo_user.profile_url }}"><img src="{{ weibo_user.head_img }}"><span>{{ weibo_user.weibo_user_name }}</span></a>
+                        <a href="{{ weibo_user.profile_url }}" target="_blank"><img src="{{ weibo_user.head_img }}"><span title="{{ weibo_user.weibo_user_name }}">{{ weibo_user.weibo_user_name }}</span></a>
                     </div>
                     <ul>
                         <li><a href="/oAuth/sign_out/">Sign Out</a></li>
@@ -66,7 +66,7 @@
         </footer>
     {% endblock %}
     <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
-    <script type="text/javascript" src="/static/js/vue.js"></script>
+    <script type="text/javascript" src="/static/js/vue.min.js"></script>
     <script type="text/javascript" src="/static/js/dealCSRF.js"></script>
     <script type="text/javascript" src="/static/DialogBox/MyDialogBox/js/jquery.myDialogBox-1.0.js"></script>
     <script type="text/javascript" src="/static/js/common.js"></script>

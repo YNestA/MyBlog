@@ -40,7 +40,7 @@
         {% if comments %}
             {% for comment in comments %}
                 <li >
-                    <div class="comment-head"><a href="{{ comment.profile_url }}"><img src={{ comment.head_img}}></a></div>
+                    <div class="comment-head"><a href="{{ comment.profile_url }}" target="_blank"><img src={{ comment.head_img}}></a></div>
                     <div class="comment-body">
                         <span class="comment-name"><a href="{{ comment.profile_url }}" >{{ comment.name }}</a></span>
                         {% for ph in comment.content%}

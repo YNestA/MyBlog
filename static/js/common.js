@@ -175,6 +175,7 @@ $(document).ready(function(){
     });
     //$("#header_drop_btn").click(headerDrop)
     var headerDropVM=new Vue({
+        delimiters:["[[","]]"],
         el:"#header_drop",
         methods:{
             headerDrop:function(event){

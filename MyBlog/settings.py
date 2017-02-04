@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'oAuth',
+    'ToDoList',
     'guardian',
 
 )
@@ -90,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'MyBlog',
         "USER":'root',
-        'PASSWORD':'******',
+        'PASSWORD':'××××××',
         'HOST':'localhost',
         'PORT':3306,
     }

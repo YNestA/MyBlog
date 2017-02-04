@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="YNestA,ToDoList,Vue.js">
+    <meta name="description" content="YNestA的ToDoList">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="/static/css/ToDoList/ToDoList.css">
+</head>
+<body>
+    <div id="ToDoList">
+        <header>
+            <section>
+                <h1>ToDoList</h1>
+                <input v-model="newTodo" type="text" @keyup.enter="addTodo" placeholder="Add a todo">
+            </section>
+        </header>
+        <div id="list">
+            <div id="N-list">
+                <div class="list-header">
+                    <h2>正在进行</h2>
+                    <span class="list-count">[[notDoneTodos.length]]</span>
+                    <a class="clear-btn" href="javascript:;" @click="clearList($event,'N')">clear</a>
+                </div>
+                <ul>
+                    <li is="not-done-todo"
+                        :todo="todo"
+                        :index="index"
+                        :key="index"
+                        @complete="completeTodo"
+                        @remove="removeTodo"
+                        v-for="(todo,index) in notDoneTodos">
+                    </li>
+                </ul>
+            </div>
+            <div id="D-list">
+                <div class="list-header">
+                    <h2>已经完成</h2>
+                    <span class="list-count">[[doneTodos.length]]</span>
+                    <a class="clear-btn" href="javascript:;" @click="clearList($event,'D')">clear</a>
+                </div>
+                <ul>
+                    <li is="done-todo"
+                        :todo="todo"
+                        :index="index"
+                        :key="index"
+                        @uncomplete="uncompleteTodo"
+                        @remove="removeTodo"
+                        v-for="(todo,index) in doneTodos">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-template" id="not-done-todo-template">
+        <li>
+            <input type="checkbox" @click.prevent="complete" >
+            <p class="todo-desc" :title="todo.desc">[[todo.desc]]</p>
+            <a class="remove-btn" href="javascript:;" @click="remove('N',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+        </li>
+    </script>
+    <script type="text/x-template" id="done-todo-template">
+        <li>
+            <input type="checkbox" @click.prevent="uncomplete" checked="checked" >
+            <p class="todo-desc" :title="todo.desc">[[todo.desc]]</p>
+            <a class="remove-btn" href="javascript:;" @click="remove('D',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+        </li>
+    </script>
+    <script type="text/javascript" src="/static/js/vue.min.js"></script>
+    <script type="text/javascript" src="/static/js/ToDoList/ToDoList.js"></script>
+</body>
+</html>
