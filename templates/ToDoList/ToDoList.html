@@ -24,16 +24,16 @@
                     <span class="list-count">[[notDoneTodos.length]]</span>
                     <a class="clear-btn" href="javascript:;" @click="clearList($event,'N')">clear</a>
                 </div>
-                <ul>
+                <transition-group name="todo-fade" tag="ul">
                     <li is="not-done-todo"
                         :todo="todo"
                         :index="index"
-                        :key="index"
+                        :key="todo"
                         @complete="completeTodo"
                         @remove="removeTodo"
                         v-for="(todo,index) in notDoneTodos">
                     </li>
-                </ul>
+                </>
             </div>
             <div id="D-list">
                 <div class="list-header">
@@ -41,16 +41,16 @@
                     <span class="list-count">[[doneTodos.length]]</span>
                     <a class="clear-btn" href="javascript:;" @click="clearList($event,'D')">clear</a>
                 </div>
-                <ul>
+                <transition-group name="todo-fade" tag="ul">
                     <li is="done-todo"
                         :todo="todo"
                         :index="index"
-                        :key="index"
+                        :key="todo"
                         @uncomplete="uncompleteTodo"
                         @remove="removeTodo"
                         v-for="(todo,index) in doneTodos">
                     </li>
-                </ul>
+                </transition-group>
             </div>
         </div>
     </div>

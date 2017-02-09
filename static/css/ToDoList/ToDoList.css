@@ -92,8 +92,11 @@ header input{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 #list li{
+    width: 100%;
+    box-sizing: border-box;
     background-color: #FFF;
     height: 35px;
     line-height: 35px;
@@ -130,4 +133,15 @@ header input{
 #D-list ul{
     opacity: 0.6
 }
-
+.todo-fade-enter,.todo-fade-leave-active{
+    opacity: 0;
+}
+.todo-fade-enter-active,.todo-fade-leave-active{
+    transition: all 0.5s;
+}
+.todo-fade-leave-active{
+    position: absolute; /*!!!*/
+}
+.todo-fade-move{
+    transition: all 1s;
+}
