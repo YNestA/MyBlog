@@ -31,12 +31,13 @@ header section{
     line-height: 70px;
     margin:0 auto;
 }
+
 header h1{
     margin: 0;
     color: #FAFAFA;
-    font-size: 36px;
+    font-size: 32px;
     display: inline-block;
-    width: 160px;
+    width: 30%;
     vertical-align: middle;
 }
 header input{
@@ -54,6 +55,17 @@ header input{
 #list{
     margin: 0 auto;
     width: 50%;
+}
+@media screen and (max-width: 720px){
+    #list{
+        width:90%
+    }
+    header section{
+        width: 90%;
+    }
+    header h1{
+        font-size: 30px;
+    }
 }
 #list div.list-header{
     height: 35px;

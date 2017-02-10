@@ -23,6 +23,10 @@ body{
 article.post{
     word-wrap: break-word;
 }
+article.post img{
+    max-width: 100%;
+}
+
 h2.title{
     font-size: 2em;
     margin: 0px 0px 20px;
