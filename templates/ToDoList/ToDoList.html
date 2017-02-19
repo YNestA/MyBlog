@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>ToDoList</title>
     <link rel="stylesheet" href="/static/css/ToDoList/ToDoList.css">
+    <link rel="stylesheet" href="/static/css/ToDoList/note.css">
 </head>
 <body>
     <div id="ToDoList">
@@ -18,57 +19,126 @@
                 <input v-model="newTodo" type="text" @keyup.enter="addTodo" placeholder="Add a todo">
             </section>
         </header>
-        <div id="list">
-            <div id="N-list">
-                <div class="list-header">
-                    <h2>正在进行</h2>
-                    <span class="list-count">[[notDoneTodos.length]]</span>
-                    <a class="clear-btn" href="javascript:;" @click="clearList($event,'N')">clear</a>
+        <div id="main">
+            <transition-group id="left-notes" tag="ul" name="note">
+                <li is="note"
+                    :key="note"
+                    :note="note"
+                    :index="index"
+                    type="LN"
+                    @my-remove="removeNote"
+                    v-for="(note,index) in leftNotes"
+                ></li>
+            </transition-group>
+            <transition-group id="right-notes" tag="ul" name="note">
+                <li is="note"
+                    :key="note"
+                    :note="note"
+                    :index="index"
+                    type="RN"
+                    @my-remove="removeNote"
+                    v-for="(note,index) in rightNotes"
+                ></li>
+            </transition-group>
+            <div id="list">
+                <div id="N-list">
+                    <div class="list-header">
+                        <h2>正在进行</h2>
+                        <span class="list-count">[[notDoneTodos.length]]</span>
+                        <a class="clear-btn" href="javascript:;" @click="clearList($event,'N')">clear</a>
+                    </div>
+                    <transition-group name="todo-fade" tag="ul">
+                        <li is="not-done-todo"
+                            :todo="todo"
+                            :index="index"
+                            :key="todo"
+                            @complete="completeTodo"
+                            @my-remove="removeTodo"
+                            @my-change="changeTodo"
+                            v-for="(todo,index) in notDoneTodos">
+                        </li>
+                    </transition-group>
                 </div>
-                <transition-group name="todo-fade" tag="ul">
-                    <li is="not-done-todo"
-                        :todo="todo"
-                        :index="index"
-                        :key="todo"
-                        @complete="completeTodo"
-                        @remove="removeTodo"
-                        v-for="(todo,index) in notDoneTodos">
-                    </li>
-                </>
-            </div>
-            <div id="D-list">
-                <div class="list-header">
-                    <h2>已经完成</h2>
-                    <span class="list-count">[[doneTodos.length]]</span>
-                    <a class="clear-btn" href="javascript:;" @click="clearList($event,'D')">clear</a>
+                <div id="D-list">
+                    <div class="list-header">
+                        <h2>已经完成</h2>
+                        <span class="list-count">[[doneTodos.length]]</span>
+                        <a class="clear-btn" href="javascript:;" @click="clearList($event,'D')">clear</a>
+                    </div>
+                    <transition-group name="todo-fade" tag="ul">
+                        <li is="done-todo"
+                            :todo="todo"
+                            :index="index"
+                            :key="todo"
+                            @uncomplete="uncompleteTodo"
+                            @my-remove="removeTodo"
+                            @my-change="changeTodo"
+                            v-for="(todo,index) in doneTodos">
+                        </li>
+                    </transition-group>
                 </div>
-                <transition-group name="todo-fade" tag="ul">
-                    <li is="done-todo"
-                        :todo="todo"
-                        :index="index"
-                        :key="todo"
-                        @uncomplete="uncompleteTodo"
-                        @remove="removeTodo"
-                        v-for="(todo,index) in doneTodos">
-                    </li>
-                </transition-group>
             </div>
         </div>
+        <transition name="note-input">
+            <div  id="note-input" v-show="noteInputShow">
+                <textarea placeholder="Add a note ~~~" spellcheck="false"
+                          v-model="newNote"
+                          ref="noteInput"
+                          @keyup="dealNoteInput($event)"
+                ></textarea>
+                <span>按Ctrl+Enter确认/按Enter换行</span>
+            </div>
+        </transition>
+        <a id="add-note-btn" href="javascript:;"
+           :class={adding:noteInputShow}
+           @click="showNoteInput"
+        ><img src="/static/image/ToDoList/add_note_0.png"></a>
+        <a id="go-top-btn" href="javascript:;" @click="goTop"><img src="/static/image/ToDoList/go_top.png"></a>
     </div>
     <script type="text/x-template" id="not-done-todo-template">
-        <li>
-            <input type="checkbox" @click.prevent="complete" >
-            <p class="todo-desc" :title="todo.desc">[[todo.desc]]</p>
-            <a class="remove-btn" href="javascript:;" @click="remove('N',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+        <li @mouseenter="hovering=true" @mouseleave="hovering=false">
+            <div class="todo-container">
+                <input type="checkbox" @click.prevent="complete" >
+                <p v-show="!changing" class="todo-desc" :title="todo.desc" @click="startChange">[[todo.desc]]</p>
+                <input ref="input" class="todo-change"
+                       v-show="changing"
+                       v-model.lazy="todo.desc"
+                       @blur="myChange('N',index)"
+                       @keyup.enter="$event.target.blur()"
+                >
+                <a class="remove-btn" href="javascript:;" @click="myRemove('N',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+            </div>
+            <transition name="time-slide">
+                <div v-if="hovering" class="todo-time">开始: [[todo.startTime | cutSeconds]]<br>结束: 尚未完成</div>
+            </transition>
         </li>
     </script>
     <script type="text/x-template" id="done-todo-template">
-        <li>
-            <input type="checkbox" @click.prevent="uncomplete" checked="checked" >
-            <p class="todo-desc" :title="todo.desc">[[todo.desc]]</p>
-            <a class="remove-btn" href="javascript:;" @click="remove('D',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+        <li @mouseenter="hovering=true" @mouseleave="hovering=false">
+            <div class="todo-container">
+                <input type="checkbox" @click.prevent="uncomplete" checked="checked" >
+                <p v-show="!changing" class="todo-desc" :title="todo.desc" @click="startChange">[[todo.desc]]</p>
+                <input ref="input" class="todo-change"
+                       v-show="changing"
+                       v-model.lazy="todo.desc"
+                       @blur="myChange('D',index)"
+                       @keyup.enter="$event.target.blur()"
+                >
+                <a class="remove-btn" href="javascript:;" @click="myRemove('D',index)"><img src="/static/image/ToDoList/delete.png" alt="remove"></a>
+            </div>
+            <transition name="time-slide">
+                <div v-if="hovering" class="todo-time" >开始:[[todo.startTime | cutSeconds]]<br>结束:[[todo.endTime| cutSeconds]]</div>
+            </transition>
         </li>
     </script>
+    <script type="text/x-template" id="note-template">
+        <li class="note" key="">
+            <p v-for="ph in phs">[[ph]]</p>
+            <div class="note-time">[[note.addTime | cutSeconds]]</div>
+            <span class="delete-note-btn" title="撕掉便签" @click="myRemove(type,index)"></span>
+        </li>
+    </script>
+    <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="/static/js/vue.min.js"></script>
     <script type="text/javascript" src="/static/js/ToDoList/ToDoList.js"></script>
 </body>

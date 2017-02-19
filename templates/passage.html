@@ -24,9 +24,9 @@
                 <div id="make_a_comment">Make a Comment</div>
                 {% if weibo_user %}
                     <form id="comment_form">
-                        <div id="comment_form_left"><a href="{{ weibo_user.profile_url }}"><img src="{{weibo_user.head_img}}"></a></div>
+                        <div id="comment_form_left"><a target="_blank" href="{{ weibo_user.profile_url }}"><img src="{{weibo_user.head_img}}"></a></div>
                         <div id="comment_form_right">
-                            <span id="comment_user_name"><a href="{{weibo_user.profile_url}}">{{ weibo_user.weibo_user_name }}</a></span>
+                            <span id="comment_user_name"><a target="_blank" href="{{weibo_user.profile_url}}">{{ weibo_user.weibo_user_name }}</a></span>
                             <textarea spellcheck="false" placeholder="说点什么..." maxlength="500"></textarea>
                             <div id="comment_form_handle"><button id="clear_btn" type="button">清空</button><button type="button" id="comment_submit_btn">提交</button></div>
                         </div>
@@ -40,9 +40,9 @@
         {% if comments %}
             {% for comment in comments %}
                 <li >
-                    <div class="comment-head"><a href="{{ comment.profile_url }}" target="_blank"><img src={{ comment.head_img}}></a></div>
+                    <div class="comment-head"><a  href="{{ comment.profile_url }}" target="_blank"><img src={{ comment.head_img}}></a></div>
                     <div class="comment-body">
-                        <span class="comment-name"><a href="{{ comment.profile_url }}" >{{ comment.name }}</a></span>
+                        <span class="comment-name"><a target="_blank" href="{{ comment.profile_url }}" >{{ comment.name }}</a></span>
                         {% for ph in comment.content%}
                             <p class="comment-content">{{ ph }}</p>
                         {% endfor %}

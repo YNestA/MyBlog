@@ -14,6 +14,9 @@ body{
 article,aside,dialog,footer,header,section,footer,nav,figure,menu{
     display:block;
 }
+*:focus{
+    outline: none;
+}
 a{
     outline: none;
     color:darkcyan;

@@ -10,11 +10,11 @@ function initCodeText() {
     });
 }
 function buildCommentLi(comment) {
-    var commentHtml="<li ><div class='comment-head'><a href='";
+    var commentHtml="<li ><div class='comment-head'><a target='_blank' href='";
         commentHtml+=comment["profile_url"];
         commentHtml+="'><img src='";
         commentHtml+=comment["head_img"];
-        commentHtml+="'></a></div><div class='comment-body'><span class='comment-name'><a href='";
+        commentHtml+="'></a></div><div class='comment-body'><span class='comment-name'><a target='_blank' href='";
         commentHtml+=comment["profile_url"]+"'>";
         commentHtml+=comment["name"];
         commentHtml+="</a></span>";

@@ -65,7 +65,8 @@ span.comment-name a:hover{
 }
 p.comment-content{
     font-size: 0.9em;
-
+    white-space: pre-wrap;
+    word-break: break-all;
 }
 div.comment-info{
     color: gray;
