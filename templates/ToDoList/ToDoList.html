@@ -95,6 +95,12 @@
         ><img src="/static/image/ToDoList/add_note_0.png"></a>
         <a id="go-top-btn" href="javascript:;" @click="goTop"><img src="/static/image/ToDoList/go_top.png"></a>
     </div>
+    <footer>
+        <span id="power_info">powered by Yang xy</span>
+        <a class="github" target="_blank" href="https://github.com/YNestA">
+            <img src="/static/image/common/my-github.png">
+        </a>
+        </footer>
     <script type="text/x-template" id="not-done-todo-template">
         <li @mouseenter="hovering=true" @mouseleave="hovering=false">
             <div class="todo-container">
@@ -132,10 +138,12 @@
         </li>
     </script>
     <script type="text/x-template" id="note-template">
-        <li class="note" key="">
-            <p v-for="ph in phs">[[ph]]</p>
-            <div class="note-time">[[note.addTime | cutSeconds]]</div>
+        <li class="note-container" key="note">
             <span class="delete-note-btn" title="撕掉便签" @click="myRemove(type,index)"></span>
+            <div class="note">
+                <p v-for="ph in phs">[[ph]]</p>
+                <div class="note-time">[[note.addTime | cutSeconds]]</div>
+            </div>
         </li>
     </script>
     <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>

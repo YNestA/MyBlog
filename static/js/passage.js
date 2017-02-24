@@ -58,6 +58,11 @@ function getCommentsByPage(futurePage,$btn,$commentsPager) {
                 }
                 $("#comments_ul").empty().append($(commentsHtml));
                 $("html,body").animate({scrollTop:parseInt($("#comments").offset().top)-100});
+                $("#comment_form_left img,div.comment-head img").hover(function () {
+                    $(this).removeClass("head_left_scroll").addClass("head_right_scroll");
+                },function () {
+                    $(this).removeClass("head_right_scroll").addClass("head_left_scroll");
+                });
             }
         },
         beforeSend:function (XMLHttpRequest) {

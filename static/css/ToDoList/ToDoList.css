@@ -21,6 +21,11 @@ a{
 img{
     border: none;
 }
+#ToDoList{
+    min-height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
 header {
     height: 70px;
     background-color: #333;
@@ -201,6 +206,32 @@ div.todo-time:after{
     left: -19px;
     border-right-color: #FFF;
 }
+
+footer {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0px 50px ;
+    text-align: center;
+    font-size: 1em;
+    color: darkcyan;
+    line-height: 60px;
+    height:60px;
+    margin-top: -60px;
+}
+#power_info{
+    display: inline-block;
+    height: 100%;
+    line-height: inherit;
+}
+footer a.github{
+    display: inline-block;
+    margin-left: 5px;
+}
+footer a.github img{
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+}
+
 
 .todo-fade-enter,.todo-fade-leave-active{
     opacity: 0;
