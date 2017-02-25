@@ -3,11 +3,14 @@ body{
     background-size: 100%,100%;
 }
 
+#whole_container{
+    background-color: rgba(255,255,255,0.95);
+}
 #center {
     width: 100%;
-    background-color: rgba(255,255,255,0.90);
     overflow: hidden;
     padding-bottom: 200px;
+
 }
 #main{
     width: 100%;

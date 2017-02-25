@@ -2,7 +2,7 @@
 {% block description %}
     <meta name="description" content="{{ passage.title }}" xmlns="http://www.w3.org/1999/html">{% endblock %}
 {% block title %}{{ passage.title }}{% endblock %}
-{% block css %}<link rel="stylesheet" type="text/css" href="/static/css/passage.css">{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/static/dist/css/passage.min.css">{% endblock %}
 {% block center %}
     <div id="center">
     <div id="main">
@@ -70,5 +70,5 @@
     </div>
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="/static/js/passage.js"></script>
+    <script type="text/javascript" src="/static/dist/js/passage.min.js"></script>
 {% endblock %}

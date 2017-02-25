@@ -8,8 +8,6 @@
     {% block keywords %}<meta name="keywords" content="YNestA,个人博客,blog,Web">{% endblock %}
     {% block description %}<meta name="description" content="YNestA的个人博客">{% endblock %}
     <title>{% block title %}MainBase{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/static/DialogBox/MyDialogBox/css/box.css">
      <!--[if lte IE 9]>
 	<script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="/static/selectivizr-master/selectivizr.js"></script>
@@ -65,11 +63,13 @@
         <a id="go-top" href="javascript:void (0);"></a>
         </footer>
     {% endblock %}
-    <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
-    <script type="text/javascript" src="/static/js/vue.min.js"></script>
+    <!--
+    <script type="text/javascript" src="/static/lib/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/static/lib/js/vue.min.js"></script>
     <script type="text/javascript" src="/static/js/dealCSRF.js"></script>
     <script type="text/javascript" src="/static/DialogBox/MyDialogBox/js/jquery.myDialogBox-1.0.js"></script>
     <script type="text/javascript" src="/static/js/common.js"></script>
+    -->
     {% block js %}{% endblock %}
 </body>
 </html>

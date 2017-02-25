@@ -1,8 +1,11 @@
 {% extends "mainBase.html" %}
 {% block title %}YNestA | {{title}}{% endblock %}
-{% block css %}<link rel="stylesheet" type="text/css" href="/static/css/passages.css">{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="/static/dist/css/passages.min.css">{% endblock %}
 {% block center %}
     <div id="center">
     {% include "passagesCenter.html" %}
     </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/static/dist/js/passages.min.js"></script>
 {% endblock %}
