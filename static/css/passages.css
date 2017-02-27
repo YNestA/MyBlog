@@ -30,6 +30,22 @@ h2.title{
     font-size: 2em;
     margin: 0px 0px 20px;
     font-weight: 500;
+    overflow: hidden;
+}
+@keyframes title-show{
+    0% {
+        top:0.6em;
+        left:2.5em;
+        opacity: 0;
+    }
+    80%{
+        opacity: 0.75;
+    }
+    100%{
+        top:0em;
+        left: 0em;
+        opacity: 1;
+    }
 }
 h2.title a{
     color:darkcyan;

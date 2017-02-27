@@ -9,6 +9,7 @@ article.post textarea{
     width: 75%;
     font-size: 1.35em;
     line-height: 1.5em;
+    height:0;
     border: 1px lightgrey solid;
     border-radius: 3px;
     background-color:lightgray;

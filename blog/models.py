@@ -82,7 +82,7 @@ class Passage(models.Model):
 
     def get_comments(self,page,comments_per=10):
         page=int(page)
-        the_comments=self.comments.all().order_by("-time")
+        the_comments=self.comments.filter(visable=True).order_by("-time")
         length=len(the_comments)
         whole_page=length/comments_per if length%comments_per==0 else length/comments_per+1
         if page<1:page=1
