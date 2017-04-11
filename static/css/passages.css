@@ -32,6 +32,51 @@ h2.title{
     font-weight: 500;
     overflow: hidden;
 }
+@-moz-keyframes title-show{
+    0% {
+        top:0.6em;
+        left:2.5em;
+        opacity: 0;
+    }
+    80%{
+        opacity: 0.75;
+    }
+    100%{
+        top:0em;
+        left: 0em;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes title-show{
+    0% {
+        top:0.6em;
+        left:2.5em;
+        opacity: 0;
+    }
+    80%{
+        opacity: 0.75;
+    }
+    100%{
+        top:0em;
+        left: 0em;
+        opacity: 1;
+    }
+}
+@-ms-keyframes title-show{
+    0% {
+        top:0.6em;
+        left:2.5em;
+        opacity: 0;
+    }
+    80%{
+        opacity: 0.75;
+    }
+    100%{
+        top:0em;
+        left: 0em;
+        opacity: 1;
+    }
+}
 @keyframes title-show{
     0% {
         top:0.6em;
@@ -48,11 +93,14 @@ h2.title{
     }
 }
 h2.title a{
+    position:relative;
     color:darkcyan;
     text-decoration: none;
     transition: color 0.2s linear;
     font-family: inherit;
+    opacity: 0;
 }
+
 h2.title a:hover{
     color: lightseagreen;
 }

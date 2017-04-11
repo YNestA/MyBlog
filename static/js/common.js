@@ -125,6 +125,8 @@ function search(){
                 if(data){
                     var center=document.getElementById("center");
                     center.innerHTML=data;
+                    $("#center img.lazy").imgScrollLoad();
+                    titlesMove($("h2.title"));
                 }
             },
             complete:function () {
@@ -160,6 +162,7 @@ function headerDrop(event) {
 
 $(document).ready(function(){
     //MyEventUtil.addHandler(searchBtn,"click",search);
+    FastClick.attach(document.body);
     $('#search-button').click(search);
     if($("#go-top").length) {
         $("#go-top").click(function () {

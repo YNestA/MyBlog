@@ -25,6 +25,11 @@ a{
 img{
     border: none;
 }
+img.lazy{
+    background-image: url(/static/image/common/loading.gif);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
 #whole_container{
     min-height: 100%;
     height: auto !important;

@@ -4,7 +4,7 @@
                {% for book in books %}
                <li>
                    <div class="book">
-                   <a class="book-name" target="_blank" href="{{ book.douban_url }}"><img src={{ book.img }}>{{ book.name }}</a>
+                   <a class="book-name" target="_blank" href="{{ book.douban_url }}"><img class="lazy" src="/static/image/common/lazy.png" data-url="{{ book.img}}">{{ book.name }}</a>
                     </div>
                    <div class={{ book.comment_class }}>
                    {% for ph in book.comment %}

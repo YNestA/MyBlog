@@ -24,7 +24,7 @@
                 <div id="make_a_comment">Make a Comment</div>
                 {% if weibo_user %}
                     <form id="comment_form">
-                        <div id="comment_form_left"><a target="_blank" href="{{ weibo_user.profile_url }}"><img src="{{weibo_user.head_img}}"></a></div>
+                        <div id="comment_form_left"><a target="_blank" href="{{ weibo_user.profile_url }}"><img class="lazy" src="/static/image/common/lazy.png" data-url="{{weibo_user.head_img}}"></a></div>
                         <div id="comment_form_right">
                             <span id="comment_user_name"><a target="_blank" href="{{weibo_user.profile_url}}">{{ weibo_user.weibo_user_name }}</a></span>
                             <textarea spellcheck="false" placeholder="说点什么..." maxlength="500"></textarea>
@@ -40,7 +40,7 @@
         {% if comments %}
             {% for comment in comments %}
                 <li >
-                    <div class="comment-head"><a  href="{{ comment.profile_url }}" target="_blank"><img src={{ comment.head_img}}></a></div>
+                    <div class="comment-head"><a  href="{{ comment.profile_url }}" target="_blank"><img class="lazy" src="/static/image/common/lazy.png" data-url={{ comment.head_img}}></a></div>
                     <div class="comment-body">
                         <span class="comment-name"><a target="_blank" href="{{ comment.profile_url }}" >{{ comment.name }}</a></span>
                         {% for ph in comment.content%}

@@ -148,4 +148,6 @@ $(document).ready(function () {
     },function () {
         $(this).removeClass("head_right_scroll").addClass("head_left_scroll");
     });
+
+    $("#center img.lazy").imgScrollLoad();
 });

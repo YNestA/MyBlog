@@ -8,9 +8,11 @@ module.exports=function (grunt) {
                 },
                 src:[
                     'static/lib/js/jquery-1.12.3.min.js',
+                    'static/lib/js/fastclick.js',
                     'static/lib/js/vue.min.js',
                     'static/js/dealCSRF.js',
                     'static/DialogBox/MyDialogBox/js/jquery.myDialogBox-1.0.js',
+                    'static/lib/js/jquery.imgScrollLoad.js',
                     'static/js/common.js',
                 ],
                 dest:'static/dist/js/base.js',
@@ -61,6 +63,7 @@ module.exports=function (grunt) {
                 },
                 src:[
                     'static/lib/js/jquery-1.12.3.min.js',
+                    'static/lib/js/fastclick.js',
                     'static/lib/js/vue.min.js',
                     'static/js/dealCSRF.js',
                     'static/js/ToDoList/ToDoList.js',
@@ -84,6 +87,7 @@ module.exports=function (grunt) {
                 files:{
                     'static/dist/js/ToDoList.min.js':[
                         'static/lib/js/jquery-1.12.3.min.js',
+                        'static/lib/js/fastclick.js',
                         'static/lib/js/vue.min.js',
                         'static/js/dealCSRF.js',
                         'static/js/ToDoList/ToDoList.js',

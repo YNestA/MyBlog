@@ -3,6 +3,9 @@ body{
     background-size: 100%,100%;
 }
 
+h2.title a{
+    opacity: 1;
+}
 article.post textarea{
     resize:none;
     border: none;
@@ -16,6 +19,55 @@ article.post textarea{
     background-color: rgba(200,200,150,0.15);
     color: rgb(20,40,70);
     padding: 5px;
+}
+
+div.what{
+    position: relative;
+    -moz-animation: post-show 0.8s;
+    -webkit-animation: post-show 0.8s;
+    -ms-animation: post-show 0.8s;
+    animation: post-show 0.8s;
+}
+
+@-moz-keyframes post-show{
+    from{
+        top: 1em;
+        opacity: 0;
+    }
+    to{
+        top:0;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes post-show{
+    from{
+        top: 1em;
+        opacity: 0;
+    }
+    to{
+        top:0;
+        opacity: 1;
+    }
+}
+@-ms-keyframes post-show{
+    from{
+        top: 1em;
+        opacity: 0;
+    }
+    to{
+        top:0;
+        opacity: 1;
+    }
+}
+@keyframes post-show{
+    from{
+        top: 1em;
+        opacity: 0;
+    }
+    to{
+        top:0;
+        opacity: 1;
+    }
 }
 
 #comments{
